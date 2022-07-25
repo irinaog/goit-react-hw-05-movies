@@ -1,0 +1,34 @@
+
+.transactionHistory{
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.transactionHistory, th, td{
+    border: 1px solid rgb(179, 201, 208);
+}
+
+th{
+font-family: Roboto sans-serif;
+font-weight: 700;
+font-size: 12px;
+
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    background-color: rgb(29, 117, 152);
+}
+
+tr{
+    height: 40px;
+}
+
+tr:nth-child(2n){
+    background-color: rgb(236, 236, 236);
+}
+
+td{
+    text-align: center;
+    font-family: Roboto sans-serif;
+    color: rgb(146, 146, 146);
+}
