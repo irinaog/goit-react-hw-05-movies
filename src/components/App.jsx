@@ -1,41 +1,42 @@
-import { Profile } from './Profile/Profile';
-import { Statistics } from './Statistics/Statistics';
-import { FriendList } from './FriendList/FriendList';
-import { TransactionHistory } from './TransactionHistory/TransactionHistory';
-import user from '../dataOfComponents/user.json';
-import data from '../dataOfComponents/data.json';
-import friends from '../dataOfComponents/friends.json';
-import transaction from '../dataOfComponents/transactions.json';
+
+import { Route, Routes } from "react-router-dom";
+
+import { Home } from "pages/Home";
+
+import { SharedLayout } from "./SharedLayout";
+
+
+import { Movies } from "pages/Movies";
+import { MovieDetails } from "pages/MovieDetails";
+
 
 export const App = () => {
-    return (
-        <>
-            <Profile
-                username={user.username}
-                tag={user.tag}
-                location={user.location}
-                avatar={user.avatar}
-                followers={user.stats.followers}
-                stats={user.stats}
-            />
 
-                <Statistics
-                title="Upload stats"
-                stats={data} />
-           
-        
-            
-            
-                <FriendList
-                friends={friends} />
-           
-           
-            
-                <TransactionHistory
-                items={transaction} />
-            
-            
-        </>
-    )
+//     const [movies, setMovies] = useState(null);
+  
+
+ 
+//     useEffect(() => {
+//      moviesAPI.fetchMovie()
+//          .then(films => {
+//                console.log(films.results)
+//              setMovies([...films.results])
+//              return;
+
+//         });  
+//    },[])
+    
+  
+   
+     
+    return (
+        <Routes>
+            <Route path="/" element={<SharedLayout />}>
+                <Route index element={<Home />} />
+                <Route path="movies" element={<Movies />} />
+                <Route path="movies/:movieId" element={<MovieDetails/>}></Route>
+            </Route>
+        </Routes>
+)
 };
 
