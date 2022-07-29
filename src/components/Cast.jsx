@@ -13,7 +13,6 @@ const Cast = () => {
             moviesAPI
         .fetchCast(movieId)
         .then(inform => {
-            console.log(inform.cast)
             setCast(inform.cast)
             return
         })

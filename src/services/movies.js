@@ -39,9 +39,19 @@ function fetchCast(movieId) {
             }
             return new Error('ooops');
         });
+};
+
+function fetchReviews(movieId) {
+   return fetch(`${BASE_URL}/movie/${movieId}/reviews?api_key=${API_KEY}`)
+        .then(r => {
+            if (r.ok) {
+                return r.json();
+            }
+            return new Error('ooops');
+        });
 }
 
-const api = { fetchMovie, fetchMoviedetails, fetchMovieSearch, fetchCast };
+const api = { fetchMovie, fetchMoviedetails, fetchMovieSearch, fetchCast, fetchReviews };
 export default api;
 
 // export const getTrendingMovies = (movies) => {

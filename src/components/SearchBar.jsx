@@ -1,36 +1,48 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useState } from "react";
-import moviesAPI from 'services/movies';
-import MovieList from "./MovieList";
+import PropTypes from 'prop-types';
+// import moviesAPI from 'services/movies';
+// import MovieList from "./MovieList";
 
 
-export const SearchBar = () => {
+export const SearchBar = ({onSubmit}) => {
     const [movieName, setMovieName] = useState('');
-    const [movieSearch, setMovieSearch] = useState('');
-    const [movies, setMovies] = useState(null);
+    // const [movieSearch, setMovieSearch] = useState('');
+    // const [movies, setMovies] = useState(null);
     
     
-    useEffect(() => {
-        if (!movieSearch) {
-            return;
-        };
+    // useEffect(() => {
+    //     if (!movieSearch) {
+    //         return;
+    //     };
         
-        moviesAPI
-            .fetchMovieSearch(movieSearch)
-            .then(film => {
-                setMovieSearch('')
-                setMovies(film.results)
-                return;
-            });
+    //     moviesAPI
+    //         .fetchMovieSearch(movieSearch)
+    //         .then(film => {
+    //             setMovieSearch('')
+    //             setMovies(film.results)
+    //             return;
+    //         });
             
-    },[movieSearch, movies]);
+    // },[movieSearch, movies]);
         
 
     const handleChange = (e) => {
         setMovieName(e.currentTarget.value)
     };
 
-    const handleSubmit = (e) => {
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     if (movieName.trim() === '') {
+    //         alert('Please enter smth')
+    //         return;
+    //     }
+
+    //     setMovieSearch(movieName);
+    //     setMovieName('');
+    // };
+      const handleSubmit = (e) => {
         e.preventDefault();
 
         if (movieName.trim() === '') {
@@ -38,7 +50,7 @@ export const SearchBar = () => {
             return;
         }
 
-        setMovieSearch(movieName);
+        onSubmit(movieName);
         setMovieName('');
     };
 
@@ -53,7 +65,11 @@ export const SearchBar = () => {
             <button type='submit'>Search</button>
         </form>
         
-            {movies && <MovieList movies={movies}/>}
+            {/* {movies && <MovieList movies={movies}/>} */}
         </>
     )
 };
+
+SearchBar.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+}

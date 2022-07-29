@@ -9,8 +9,8 @@ import { SharedLayout } from "./SharedLayout";
 
 const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails'));
-// const AdditionalInf = lazy(() => import('./AdditionalInf'));
 const Cast = lazy(() => import('./Cast'));
+const Reviews = lazy(() => import('./Reviews'));
 
 
 
@@ -24,7 +24,8 @@ export const App = () => {
                 <Route path="movies" element={<Movies />} />
                 <Route path="movies/:movieId" element={<MovieDetails />}>
                     {/* <Route index element={<AdditionalInf />} /> */}
-                    <Route path='cast' element={<Cast/>}/>
+                        <Route path="cast" element={<Cast />} />
+                        <Route path="reviews" element={<Reviews/>}/>
                 </Route>
             
                 </Route>

@@ -1,11 +1,13 @@
 import { Container } from "components/SharedLayout.styled"
 import { Suspense, useEffect,useState } from "react";
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import moviesAPI from 'services/movies';
 
 const MovieDetails = () => {
+    const location = useLocation();
     const { movieId } = useParams();
     const [movieDetail, setMovieDetail] = useState(null);
+    console.log('Detail:', location.state.from)
 
     useEffect(() => {
         moviesAPI
@@ -23,7 +25,8 @@ const MovieDetails = () => {
   
     return (
         <>
-        <Container>
+            <Container>
+                <button type="button">Back</button>
             {movieDetail && <div>
                 <img alt={movieDetail.original_title} src={`https://image.tmdb.org/t/p/w200/${movieDetail.poster_path}`} />
                 <h2>{movieDetail.original_title}</h2>

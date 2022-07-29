@@ -4,13 +4,15 @@ import { Container } from './SharedLayout.styled';
 
 const MovieList = ({ movies }) => {
     const location = useLocation();
-    console.log(location)
+    console.log('List;',location)
     return (
         <Container>
         <ul>
             {movies.map(({original_title, id}) => (
                 <li key={id} >
-                    {location.pathname==='/'?<Link to={`movies/${id}`}>{original_title}</Link>:<Link to={`${id}`}>{original_title}</Link>}
+                    {location.pathname === '/' ?
+                        <Link to={ `movies/${id}`} state={{from:location}}>{original_title}</Link> :
+                        <Link to={ `${id}`} state={{from:location}}>{original_title}</Link>}
                     
                 </li>
             ))}
@@ -28,3 +30,16 @@ MovieList.propTypes = {
 };
 
 export default MovieList;
+
+    // <Container>
+    //     <ul>
+    //         {movies.map(({original_title, id}) => (
+    //             <li key={id} >
+    //                 {location.pathname === '/' ?
+    //                     <Link to={ `movies/${id}`}>{original_title}</Link> :
+    //                     <Link to={ `${id}`}>{original_title}</Link>}
+                    
+    //             </li>
+    //         ))}
+    //         </ul>
+    //     </Container>
