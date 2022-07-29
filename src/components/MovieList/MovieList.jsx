@@ -1,22 +1,22 @@
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
-import { Container } from './SharedLayout.styled';
+import { Container } from '../SharedLayout/SharedLayout.styled';
+import { List, Item, Movie } from './MovieList.styled';
 
 const MovieList = ({ movies }) => {
     const location = useLocation();
-    console.log('List;',location)
     return (
         <Container>
-        <ul>
+        <List>
             {movies.map(({original_title, id}) => (
-                <li key={id} >
+                <Item key={id} >
                     {location.pathname === '/' ?
-                        <Link to={ `movies/${id}`} state={{from:location}}>{original_title}</Link> :
-                        <Link to={ `${id}`} state={{from:location}}>{original_title}</Link>}
+                        <Movie to={ `movies/${id}`} state={{from:location}}>{original_title}</Movie> :
+                        <Movie to={ `${id}`} state={{from:location}}>{original_title}</Movie>}
                     
-                </li>
+                </Item>
             ))}
-            </ul>
+            </List>
         </Container>
     )
 };
