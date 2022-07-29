@@ -11,7 +11,6 @@ const Movies = () => {
     const [moviesName, setMoviesName] = useState('');
     const [movies, setMovies] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
-    const movieName = searchParams.get("query")??'';
 
     useEffect(() => {
         if (moviesName==='') {
@@ -24,11 +23,10 @@ const Movies = () => {
                 if (film.total_results === 0) {
                     return alert('Nothing found')
                 }
-                console.log(film)
                 setMovies(film.results)
                 return;
             });
-    },[moviesName]);
+    },[moviesName,searchParams]);
 
     const handleFormSubmit = moviesName => {
         setMoviesName(moviesName);
