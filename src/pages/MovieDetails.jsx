@@ -1,10 +1,9 @@
 import { Container } from "components/SharedLayout.styled"
-import { useEffect } from "react";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Suspense, useEffect,useState } from "react";
+import { Link, Outlet, useParams } from "react-router-dom";
 import moviesAPI from 'services/movies';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
     const { movieId } = useParams();
     const [movieDetail, setMovieDetail] = useState(null);
 
@@ -16,49 +15,49 @@ export const MovieDetails = () => {
                     return
                 }
                 setMovieDetail(movieInform);
-                // console.log(movieDetail);
                 return
             });
-    }, [movieId,movieDetail]);
+    }, [movieId, movieDetail]);
     
     // const { poster_path, original_title, overview, genres, } = movieDetail;
   
     return (
+        <>
         <Container>
-             {/* <img alt='hello' src='#' />
-            <h2>Lorem</h2>
-            <p>inf</p>
-            <h3>Overwiev</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-            <h3>Genres</h3>
-            <p>
-            Lorem ipsum dolor 
-                </p> */}
-            {movieDetail && <>
-              <img alt={movieDetail.original_title} src={movieDetail.poster_path} />
-            <h2>{movieDetail.original_title}</h2>
-            <p>inf</p>
-            <h3>Overwiev</h3>
-            <p>{ movieDetail.overview}</p>
-            <h3>Genres</h3>
-            <p>
-            {movieDetail.genres.map(genre => (
-                <span key={genre.id}>{genre.name} </span>
-            ))}
+            {movieDetail && <div>
+                <img alt={movieDetail.original_title} src={`https://image.tmdb.org/t/p/w200/${movieDetail.poster_path}`} />
+                <h2>{movieDetail.original_title}</h2>
+                <p>User score: { movieDetail.vote_average}</p>
+                <h3>Overwiev</h3>
+                <p>{movieDetail.overview}</p>
+                <h3>Genres</h3>
+                <p>
+                    {movieDetail.genres.map(genre => (
+                        <span key={genre.id}>{genre.name} </span>
+                    ))}
                 </p>
-            </>}
-          
-            
-       </Container> 
+            </div>}
+        </Container>
+           
+        <Container>
+            <h2>Additional information</h2>
+            <ul>
+                <li>
+                    <Link to='cast'>Cast</Link>
+                </li>
+                <li>
+                    <Link to='reviews'>Reviews</Link>
+                </li>
+            </ul>
+            </Container>
+            <Suspense fallback={<div>Please wait</div>}>
+                <Outlet />
+            </Suspense>
+        </>
+        
+      
     )
-}
+};
 
-//  <img alt='hello' src='#' />
-//             <h2>Lorem</h2>
-//             <p>inf</p>
-//             <h3>Overwiev</h3>
-//             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
-//             <h3>Genres</h3>
-//             <p>
-//             Lorem ipsum dolor 
-//                 </p>
+export default MovieDetails;
+

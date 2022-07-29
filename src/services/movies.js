@@ -1,7 +1,8 @@
-const API_KEY = 'bedaa935184fdccacd2a5dbb188de139'
+const API_KEY = 'bedaa935184fdccacd2a5dbb188de139';
+const BASE_URL = 'https://api.themoviedb.org/3';
 function fetchMovie() {
     
-    return fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}`)
+    return fetch(`${BASE_URL}/trending/movie/day?api_key=${API_KEY}`)
         .then(r => {
             if (r.ok) {
                 return r.json();
@@ -11,7 +12,27 @@ function fetchMovie() {
 };
 
 function fetchMoviedetails(movieId) {
-    return fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}`)
+    return fetch(`${BASE_URL}/movie/${movieId}?api_key=${API_KEY}`)
+        .then(r => {
+            if (r.ok) {
+                return r.json();
+            }
+            return new Error('ooops');
+        });
+};
+
+function fetchMovieSearch(movieName) {
+    return fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${movieName}`)
+        .then(r => {
+            if (r.ok) {
+                return r.json();
+            }
+            return new Error('ooops');
+        });
+};
+
+function fetchCast(movieId) {
+    return fetch(`${BASE_URL}/movie/${movieId}/credits?api_key=${API_KEY}`)
         .then(r => {
             if (r.ok) {
                 return r.json();
@@ -20,7 +41,7 @@ function fetchMoviedetails(movieId) {
         });
 }
 
-const api = { fetchMovie, fetchMoviedetails };
+const api = { fetchMovie, fetchMoviedetails, fetchMovieSearch, fetchCast };
 export default api;
 
 // export const getTrendingMovies = (movies) => {

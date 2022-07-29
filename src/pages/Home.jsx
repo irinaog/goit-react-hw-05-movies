@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { TrendMoviesList } from "components/TrendMoviesList";
+import MovieList from "../components/MovieList";
 import moviesAPI from 'services/movies';
-// const { Link } = require("react-router-dom")
 
 export const Home = () => {
     const [movies, setMovies] = useState(null);
@@ -18,7 +17,8 @@ export const Home = () => {
     return (
         <main>
             <h1>Trending today</h1>
-            <TrendMoviesList movies={ movies} />
+            {movies&&<MovieList movies={ movies} />}
+            
         </main>
     )
 };

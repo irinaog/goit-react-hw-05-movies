@@ -1,10 +1,12 @@
 import { SearchBar } from "components/SearchBar"
 import { Container } from "components/SharedLayout.styled"
 
-export const Movies = () => {
+const Movies = () => {
     return (
         <Container>
             <SearchBar />
         </Container>
     )
 };
+
+export default Movies;
