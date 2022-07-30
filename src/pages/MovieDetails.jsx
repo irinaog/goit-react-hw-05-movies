@@ -1,6 +1,8 @@
 import { Container } from "components/SharedLayout/SharedLayout.styled"
 import { Suspense, useEffect,useState } from "react";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import BackLinkHref from "components/BackLinkHref/BackLinkHref";
+import { List, Item, } from "components/MovieList/MovieList.styled";
 import moviesAPI from 'services/movies';
 
 const MovieDetails = () => {
@@ -26,7 +28,8 @@ const MovieDetails = () => {
     return (
         <>
             <Container>
-                <Link to={backLinkHref}>Back</Link>
+                <BackLinkHref backLink={backLinkHref}/>
+                {/* <Link to={backLinkHref}>Back</Link> */}
             {movieDetail && <div>
                 <img alt={movieDetail.original_title} src={`https://image.tmdb.org/t/p/w200/${movieDetail.poster_path}`} />
                 <h2>{movieDetail.original_title}</h2>
@@ -44,14 +47,14 @@ const MovieDetails = () => {
            
         <Container>
             <h2>Additional information</h2>
-            <ul>
-                <li>
+            <List>
+                <Item>
                     <Link to='cast'>Cast</Link>
-                </li>
-                <li>
+                </Item>
+                <Item>
                     <Link to='reviews'>Reviews</Link>
-                </li>
-            </ul>
+                </Item>
+            </List>
             </Container>
             <Suspense fallback={<div>Please wait</div>}>
                 <Outlet />

@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import moviesAPI from 'services/movies';
+import { ActorsList, ActorItem, Text } from './Cast.styled';
 
 const Cast = () => {
     const { movieId } = useParams();
@@ -22,16 +23,16 @@ const Cast = () => {
 
     return (
         
-        <ul>
+        <ActorsList>
             {cast&& cast.map(({ cast_id, name, character, profile_path }) => (
-                <li key={cast_id}>
+                <ActorItem key={cast_id}>
                     <img src={`https://image.tmdb.org/t/p/w200/${profile_path}`} alt={name} />
-                    <p>{name}</p>
-                    <p>Character: <span>{character}</span></p>
-                </li>
+                    <Text>{name}</Text>
+                    <Text>Character: <span>{character}</span></Text>
+                </ActorItem>
             ))}
                 
-        </ul>
+        </ActorsList>
             
     )
 };

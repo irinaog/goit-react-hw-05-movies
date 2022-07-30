@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { List, Item, } from "components/MovieList/MovieList.styled";
 import moviesAPI from 'services/movies';
+
+
 
 const Reviews = () => {
     const { movieId } = useParams();
@@ -28,14 +31,14 @@ const Reviews = () => {
     return (
         <>
             {status === 'resolved' &&
-                <ul>
+                <List>
                     {reviews.map(({ author, content, id }) => (
-                        <li key={id}>
+                        <Item key={id}>
                             <p>Author: <span>{author}</span></p>
                             <p>{content}</p>
-                        </li>
+                        </Item>
                     ))}
-                </ul>}
+                </List>}
             {status ==='rejected' && <div>No results</div>}
         </>
     )

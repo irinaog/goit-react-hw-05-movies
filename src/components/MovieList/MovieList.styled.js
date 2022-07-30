@@ -9,7 +9,8 @@ export const Item = styled.li`
 margin-top:4px;
 `
 
-export const Movie = styled(Link)`
-text-decoration: none;
-color:blue;
+export const Movies = styled(Link)`
+
+text-decoration: none; 
+color:orangered;
 `
