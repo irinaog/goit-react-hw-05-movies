@@ -5,12 +5,13 @@ import { List, Item, Movies } from './MovieList.styled';
 
 const MovieList = ({ movies }) => {
     const location = useLocation();
+    // console.log(location)
     return (
         <Container>
         <List>
             {movies.map(({original_title, id}) => (
                 <Item key={id} >
-                    {location.pathname === '/' ?
+                    {location.pathname === '/goit-react-hw-05-movies' ?
                         <Movies to={ `movies/${id}`} state={{from:location}}>{original_title}</Movies> :
                         <Movies to={ `${id}`} state={{from:location}}>{original_title}</Movies>}
                     
