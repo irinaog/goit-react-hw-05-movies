@@ -8,41 +8,11 @@ import { Input, Btn } from "./SearchBar.styled";
 
 export const SearchBar = ({onSubmit}) => {
     const [movieName, setMovieName] = useState('');
-    // const [movieSearch, setMovieSearch] = useState('');
-    // const [movies, setMovies] = useState(null);
-    
-    
-    // useEffect(() => {
-    //     if (!movieSearch) {
-    //         return;
-    //     };
-        
-    //     moviesAPI
-    //         .fetchMovieSearch(movieSearch)
-    //         .then(film => {
-    //             setMovieSearch('')
-    //             setMovies(film.results)
-    //             return;
-    //         });
-            
-    // },[movieSearch, movies]);
-        
 
     const handleChange = (e) => {
         setMovieName(e.currentTarget.value)
     };
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     if (movieName.trim() === '') {
-    //         alert('Please enter smth')
-    //         return;
-    //     }
-
-    //     setMovieSearch(movieName);
-    //     setMovieName('');
-    // };
       const handleSubmit = (e) => {
         e.preventDefault();
 

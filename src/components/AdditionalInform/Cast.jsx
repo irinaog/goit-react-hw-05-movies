@@ -1,19 +1,26 @@
 // import PropTypes from 'prop-types';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState  } from 'react';
+import {  useParams } from 'react-router-dom';
 import moviesAPI from 'services/movies';
 import { ActorsList, ActorItem, Text } from './Cast.styled';
+// import { useLocation } from 'react-router-dom';
+
 
 const Cast = () => {
     const { movieId } = useParams();
     const [cast, setCast] = useState(null);
+    // const location = useLocation();
+    // console.log('Cast:',location.search)
+    
     
     useEffect(() => {
-        if (!cast) {
+        if (movieId) {
             moviesAPI
         .fetchCast(movieId)
-        .then(inform => {
+                .then(inform => {
+                    if (cast !== null) {
+                return
+            }
             setCast(inform.cast)
             return
         })
@@ -21,8 +28,7 @@ const Cast = () => {
     },[cast, movieId])
    
 
-    return (
-        
+    return (<>
         <ActorsList>
             {cast&& cast.map(({ cast_id, name, character, profile_path }) => (
                 <ActorItem key={cast_id}>
@@ -33,7 +39,7 @@ const Cast = () => {
             ))}
                 
         </ActorsList>
-            
+            </>
     )
 };
 

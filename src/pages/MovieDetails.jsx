@@ -9,11 +9,15 @@ const MovieDetails = () => {
     const location = useLocation();
     const { movieId } = useParams();
     const [movieDetail, setMovieDetail] = useState(null);
-    const backLinkHref = location.state?.from ?? "movies";
-    // console.log(location.state.from)
+
+    const backLinkHref =location.search ? `/goit-react-hw-05-movies/movies/${location.search}`: '/goit-react-hw-05-movies';
+    
+
+    // console.log('MD:',location.search)
 
     useEffect(() => {
-        moviesAPI
+        if (movieId) {
+             moviesAPI
             .fetchMoviedetails(movieId)
             .then(movieInform => {
                 if (movieDetail !== null) {
@@ -22,6 +26,8 @@ const MovieDetails = () => {
                 setMovieDetail(movieInform);
                 return
             });
+        }
+       
     }, [movieId, movieDetail]);
     
   
@@ -50,10 +56,10 @@ const MovieDetails = () => {
             <h2>Additional information</h2>
             <List>
                 <Item>
-                    <Link to='cast'>Cast</Link>
+                        <Link to={{pathname:'cast', search:location.search}} state={{from:location}}>Cast</Link>
                 </Item>
                 <Item>
-                    <Link to='reviews'>Reviews</Link>
+                    <Link to={{pathname:'reviews', search:location.search}} state={{from:location}}>Reviews</Link>
                 </Item>
             </List>
             </Container>
