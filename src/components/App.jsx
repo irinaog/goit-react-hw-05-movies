@@ -5,6 +5,8 @@ import { lazy, Suspense,  } from "react";
 import { Home } from "pages/Home";
 import { SharedLayout } from "./SharedLayout/SharedLayout";
 
+
+
 const Movies = lazy(() => import('../pages/Movies'));
 const MovieDetails = lazy(() => import('../pages/MovieDetails'));
 const Cast = lazy(() => import('./AdditionalInform/Cast'));
@@ -18,7 +20,7 @@ export const App = () => {
         <Suspense fallback={<div>Loading...</div>}>
         <Routes>
             <Route path="/goit-react-hw-05-movies" element={<SharedLayout />}>
-                <Route  index element={<Home />} />
+                <Route index element={<Home />} />
                 <Route path="movies" element={<Movies />} />
                 <Route path="movies/:movieId" element={<MovieDetails />}>
                     {/* <Route index element={<AdditionalInf />} /> */}

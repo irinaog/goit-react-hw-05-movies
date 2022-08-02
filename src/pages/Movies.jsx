@@ -8,12 +8,14 @@ import moviesAPI from 'services/movies';
 import MovieList from "../components/MovieList/MovieList";
 
 const Movies = () => {
-    const [moviesName, setMoviesName] = useState('');
-    const [movies, setMovies] = useState(null);
     const [searchParams, setSearchParams] = useSearchParams();
+    const [moviesName, setMoviesName] = useState(searchParams.get("query"));
+    const [movies, setMovies] = useState(null);
+   
+    // console.log(searchParams)
 
     useEffect(() => {
-        if (moviesName==='') {
+        if (!moviesName ) {
             return;
         };
         
@@ -30,14 +32,14 @@ const Movies = () => {
 
     const handleFormSubmit = moviesName => {
         setMoviesName(moviesName);
-        setSearchParams({query: moviesName})
-    setMovies(null);
+        setSearchParams({query:moviesName});
+        setMovies(null);
   };
 
     return (
         <Container>
             <SearchBar onSubmit={handleFormSubmit} />
-            {movies && <MovieList movies={movies}/>} 
+            {movies!==null && <MovieList movies={movies}/>} 
         </Container>
     )
 };
